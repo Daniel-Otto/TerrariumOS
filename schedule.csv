@@ -1,0 +1,20 @@
+**Hinweise:**
+- Dezimaltrenner: `.`  
+- Zeitangaben: **HH:MM** (lokale Zeit)
+- Zeiten beziehen sich auf **Dämmerungsende**
+- Startzeit wird im Code berechnet (z. B. 08:30)
+
+```csv
+month,light_hours,spot_hours,dawn_duration_min,moon_daily_hours,fullmoon_nights,humidity_day_min,humidity_day_max,humidity_night_min,humidity_night_max,dusk_end_time
+January,10.0,1.5,30,2.0,3,55,60,70,75,19:00
+February,10.25,1.75,30,2.0,3,58,62,72,77,19:00
+March,10.75,2.0,30,2.0,3,60,65,75,80,19:15
+April,11.25,2.25,30,2.0,3,60,65,78,82,19:15
+May,11.75,2.5,30,2.0,3,62,67,80,85,19:15
+June,12.0,3.0,30,2.0,3,60,65,80,85,19:15
+July,12.0,3.0,30,2.0,3,60,65,80,85,19:15
+August,11.75,2.75,30,2.0,3,60,65,78,82,19:15
+September,11.25,2.5,30,2.0,3,58,63,75,80,19:00
+October,10.75,2.0,30,2.0,3,55,60,72,78,18:45
+November,10.25,1.75,30,2.0,3,55,58,70,75,18:45
+December,10.0,1.5,30,2.0,3,55,60,70,75,18:30
