@@ -44,112 +44,92 @@ This allows the terrarium schedule to adapt to real family life
 
 ---
 
-## Hardware (Recommended)
+## Features
 
-### Controller
+### Lighting System
 
-- Raspberry Pi 3B+ or Raspberry Pi 4
-- Raspberry Pi OS Lite
+- **4-phase lighting:** Dawn (4500K), Day (6700K), Basking (2250K), Moon (1W)
+- **Seasonal adaptation:** 10-12h light cycles with smooth transitions
+- **Smart scheduling:** All events relative to configurable day start time
 
-### Sensors
+### Climate Control
 
-- Temperature / humidity: BME280 or SHT31 (I²C)
-- Optional second sensor for upper terrarium zones
+- **Humidity-based rain system:** Activates only when needed (not on fixed timers)
+- **Temperature monitoring:** BME280/SHT31 sensors
+- **Target ranges:** Day 55-70%, Night 70-85%
 
-### Actuators
-
-- Lighting & heat: Shelly Plug / Shelly Plus 1 or relay module (optocoupled)
-- Rain system: Exo Terra Monsoon (230 V, ON/OFF)
-
-### Camera (Optional)
-
-- Raspberry Pi Camera Module 3 (Wide recommended)
-
----
-
-## Lighting Concept
-
-### Lamps
-
-- 4500K LED: dawn & dusk lighting
-- 6700K fluorescent tube: main daylight / plant light
-- 2250K basking spot: short heat pulse (morning)
-- 1W moonlight: night orientation
-
-### Daily Logic (Summer Example)
-
-- Dawn/dusk: 30–45 minutes
-- Basking spot: 2–3 hours in the late morning
-- No continuous heat spot throughout the day
-
----
-
-## Seasonal Model
-
-- Summer: 12.0 h light
-- Winter: 10.0 h light
-- Transitions: ±15 minutes per week
-- Basking duration reduced accordingly
-
-No true hibernation – only a controlled activity reduction.
-
----
-
-## Moonlight
+### Moonlight Simulation
 
 - Daily: 2 hours after dusk
 - Full moon: 3 consecutive nights per month until 01:00
-- No permanent night lighting
 
 ---
 
-## Humidity Control
-
-Target ranges:
-
-- Day: 55–70 %
-- Night: 70–85 %
-
-The rain system is **not controlled by fixed timers**, but by:
-
-- Morning / evening time windows
-- Activation only when humidity drops below target range
-
----
-
-## Software Architecture (Python)
+## Project Structure
 
 ```text
-terrarium/
-├── config/
-│   ├── base.yaml        # Day start time, overrides
-│   ├── months.yaml     # Seasonal parameters
-│   └── hardware.yaml   # GPIO / Shelly mapping
+TerrariumOS/
+├── docs/
+│   └── roadmap.md              # Development roadmap
 │
-├── core/
-│   ├── scheduler.py
-│   ├── seasons.py
-│   ├── lights.py
-│   ├── climate.py
-│   └── moon.py
+├── hardware/                   # Hardware documentation
+│   ├── README.md               # Hardware overview
+│   ├── electronics/            # Controller, sensors, actuators
+│   │   ├── bom.md              # Bill of materials (~150-250€)
+│   │   ├── setup.md            # Setup guide
+│   │   └── schematics/         # Wiring diagrams
+│   └── terrarium/              # Terrarium equipment
+│       ├── lighting.md         # Lighting specs (~68€)
+│       ├── equipment.md        # Rain system, enclosure (~210-400€)
+│       └── plants.md           # Suitable species
 │
-├── sensors/
-│   └── bme280.py
-│
-├── actuators/
-│   ├── relay.py
-│   └── shelly.py
-│
-└── main.py
+└── software/                   # Python software
+    ├── README.md               # Software documentation
+    └── terrarium_os/           # Main Python package
+        ├── config/             # Configuration files
+        ├── core/               # Scheduler, lights, climate
+        ├── sensors/            # Sensor interfaces
+        └── actuators/          # Relay & Shelly control
 ```
+
+---
+
+## Quick Start
+
+### Hardware
+
+See [hardware/README.md](hardware/README.md) for:
+
+- Complete parts list (BOM)
+- Setup instructions (Raspberry Pi, sensors, actuators)
+- Wiring diagrams
+- Safety guidelines
+
+**Estimated cost:** ~360-650€ (electronics + terrarium equipment)
+
+### Software
+
+See [software/README.md](software/README.md) for:
+
+- Installation instructions
+- Configuration guide
+- Usage examples
+- Development setup
 
 ---
 
 ## Project Status
 
-TerrariumOS is currently in early development.
+🚧 **Early Development** – Phase 1 (MVP) in progress
 
-See [`docs/roadmap.md`](docs/roadmap.md) for planned features and milestones.
+See [docs/roadmap.md](docs/roadmap.md) for planned features and milestones.
+
+**Current Phase:** Core System (MVP)
+
+- Relative time-based scheduler
+- Seasonal light cycles
+- Lighting control abstraction
+- CLI testing mode
 
 ---
 
